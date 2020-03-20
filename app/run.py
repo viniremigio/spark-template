@@ -1,9 +1,9 @@
 import sys
-from process import run_job
+from process_local import run_job
 
 if __name__ == '__main__':
 
-    input = sys.argv[1]
-    run_job(input)
+    input_data = sys.argv[1]
+    run_job(input_data)
 
     print("Done!")
