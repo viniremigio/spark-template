@@ -1,0 +1,30 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Resources:
+  EMRCluster:
+    Type: AWS::EMR::Cluster
+    Properties:
+      Name: EMRClusterIrisTest
+      Applications:
+        - Name: Spark
+        - Name: Hadoop
+      Instances:
+        Ec2KeyName: EC2-tutorial
+        Ec2SubnetIds:
+          - subnet-92799fb9
+        MasterInstanceGroup:
+          InstanceCount: 1
+          InstanceType: m4.large
+          Market: SPOT
+          BidPrice: 0.20
+          Name: Master
+        CoreInstanceGroup:
+          InstanceCount: 1
+          InstanceType: m4.large
+          Market: SPOT
+          BidPrice: 0.20
+          Name: Core
+        KeepJobFlowAliveWhenNoSteps: true
+      JobFlowRole: EMR_EC2_DefaultRole
+      ReleaseLabel: emr-5.29.0
+      ServiceRole: EMR_DefaultRole
+      VisibleToAllUsers: true
