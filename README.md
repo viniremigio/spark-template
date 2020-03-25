@@ -21,22 +21,15 @@ spark-submit app/run.py file://<qualified file path>
 spark-submit --packages com.amazonaws:aws-java-sdk-pom:1.10.34,org.apache.hadoop:hadoop-aws:2.7.2 app/run_local_s3.py s3n://<bucket_name>/<folder>/<file_name> <ACCESS_KEY> <SECRET_KEY>
 ```
 
-## Bootstrap EMR Cluster with AWS Cloudformation
+## Bootstrap EMR Cluster
 
-```
-aws cloudformation create-stack --stack-name EMRSpark --template-body file://automation/cloudformation/bootstrap_emr.yaml
-```
-
-If you need to **delete** stack
-
-```
-aws cloudformation delete-stack --stack-name EMRSpark
-```
+- [AWS Cloudformation](automation/cloudformation/README.md)
+- [Terraform](TODO)
 
 ## TODO
 - Refactor: Run locally; Local and S3 save options **[OK]**
 - Run Spark using AWS Glue
 - Parameterize SparkConf using resource file
-- Bootstrap EMR using Cloudformation
+- Bootstrap EMR using Cloudformation **[OK]**
 - Bootstrap EMR using Terraform
 - Spark Unit tests
