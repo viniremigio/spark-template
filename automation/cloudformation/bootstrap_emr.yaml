@@ -1,4 +1,23 @@
 AWSTemplateFormatVersion: "2010-09-09"
+Description: EMR Spark Template
+
+Parameters:
+  InstanceTypeParam:
+    Type: String
+    Default: m4.large
+  SpotInstanceBid:
+    Type: Number
+    Default: 0.20
+  EMRReleaseLabel:
+    Type: String
+    Default: emr-5.29.0
+  EMRCoreInstanceCount:
+    Type: Number
+    Default: 1
+  Subnet:
+    Type: String
+    Default: subnet-92799fb9
+
 Resources:
   EMRCluster:
     Type: AWS::EMR::Cluster
@@ -10,21 +29,26 @@ Resources:
       Instances:
         Ec2KeyName: EC2-tutorial
         Ec2SubnetIds:
-          - subnet-92799fb9
+          - !Ref Subnet
         MasterInstanceGroup:
           InstanceCount: 1
-          InstanceType: m4.large
+          InstanceType: !Ref InstanceTypeParam
           Market: SPOT
-          BidPrice: 0.20
+          BidPrice: !Ref SpotInstanceBid
           Name: Master
         CoreInstanceGroup:
-          InstanceCount: 1
-          InstanceType: m4.large
+          InstanceCount: !Ref EMRCoreInstanceCount
+          InstanceType: !Ref InstanceTypeParam
           Market: SPOT
-          BidPrice: 0.20
+          BidPrice: !Ref SpotInstanceBid
           Name: Core
         KeepJobFlowAliveWhenNoSteps: true
       JobFlowRole: EMR_EC2_DefaultRole
-      ReleaseLabel: emr-5.29.0
+      ReleaseLabel: !Ref EMRReleaseLabel
       ServiceRole: EMR_DefaultRole
       VisibleToAllUsers: true
+
+Outputs:
+  ClusterID:
+    Description: Returns EMR ClusterID
+    Value: !Ref EMRCluster
