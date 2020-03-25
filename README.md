@@ -24,12 +24,13 @@ spark-submit --packages com.amazonaws:aws-java-sdk-pom:1.10.34,org.apache.hadoop
 ## Bootstrap EMR Cluster
 
 - [AWS Cloudformation](automation/cloudformation/README.md)
-- [Terraform](TODO)
+- [Terraform](automation/terraform/README.md)
 
 ## TODO
 - Refactor: Run locally; Local and S3 save options **[OK]**
 - Run Spark using AWS Glue
 - Parameterize SparkConf using resource file
 - Bootstrap EMR using Cloudformation **[OK]**
-- Bootstrap EMR using Terraform
+- Bootstrap EMR using Terraform **[OK]**
 - Spark Unit tests
+- Add Spark job as a step

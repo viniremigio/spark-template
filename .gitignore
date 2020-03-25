@@ -1,3 +1,7 @@
 .idea/
 app/__pycache__/
 spark-warehouse
+automation/terraform/terraform.tfstate
+automation/terraform/terraform.tfstate.backup
+automation/terraform/.terraform
+automation/terraform/.terraform.tfstate.lock.info

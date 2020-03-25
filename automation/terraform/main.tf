@@ -1,0 +1,3 @@
+module "emr" {
+  source  = "./emr"
+}
